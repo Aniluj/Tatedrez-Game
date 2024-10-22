@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdd59726452f814ab20d8f434a2170c, type: 3}
+  m_Name: Level1BoardData
+  m_EditorClassIdentifier: 
+  _whiteCellData: {fileID: 11400000, guid: a2802ab594d7fd34d9205c63f91f6a2d, type: 2}
+  _blackCellData: {fileID: 11400000, guid: ffc78d6f15359944b822d36dcff997a9, type: 2}
+  _amountOfRows: 3
+  _amountOfColumns: 3
