@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TurnsManager : MonoBehaviour
 {
-    private ChessColor _currentPlayerTurn;
+    private ChessColor _currentPlayerTurn = ChessColor.Black;
     public ChessColor CurrentPlayerTurn => _currentPlayerTurn;
 
     public void EndTurn()

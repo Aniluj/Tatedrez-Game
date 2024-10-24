@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 public class Board : MonoBehaviour
 {
@@ -8,6 +11,8 @@ public class Board : MonoBehaviour
     private Cell[,] _cells;
     private List<ChessPiece> _placedPieces = new List<ChessPiece>();
     private const int _cellSize = 1;
+
+    public event Action OnPiecePlaced;
 
     public void Initialize(BoardData boardData_v)
     {
@@ -43,24 +48,26 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void ShowSelectableCellsDisplay(ChessPiece selectedChessPiece_v)
+    public void EnableSelectableCells(ChessPiece selectedChessPiece_v)
     {
         var availableMoves = selectedChessPiece_v.GetAvailableMoves(_cells);
 
         if (availableMoves != null && availableMoves.Count > 0)
         {
+            ChangeCellSelectableStates(false);
+
             for (int i = 0; i < availableMoves.Count; i++)
             {
-                _cells[availableMoves[i].x, availableMoves[i].y].SwitchSelectabilityDisplay(true);
+                _cells[availableMoves[i].x, availableMoves[i].y].SwitchSelectabilityState(true);
             }
         }
     }
 
-    public void ChangeCellSelectableDisplayStates(bool isEnable)
+    public void ChangeCellSelectableStates(bool isEnable)
     {
         foreach (Cell cell in _cells)
         {
-            if (!cell.HasLocker) cell.SwitchSelectabilityDisplay(isEnable);
+            if (!cell.HasLocker) cell.SwitchSelectabilityState(isEnable);
         }
     }
 }

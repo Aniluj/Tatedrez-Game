@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BoardData _tatedrezBoardData;
     [SerializeField] private TurnsManager _turnsManager;
 
+    [SerializeField] private ChessPieceData _demoRookPieceData;
+    [SerializeField] private RookPiece _demoWhiteRookPieceToTestFunctionality;
+
     public static GameManager Instance => _instance;
     public TurnsManager TurnsManager => _turnsManager;
     public Board TatedrezBoard => _tatedrezBoard;
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CurrentGameplayMode = GameplayMode.ClassicTicTacToeMode;
+        _demoWhiteRookPieceToTestFunctionality.Initialize(_demoRookPieceData);
         _tatedrezBoard.Initialize(_tatedrezBoardData);
     }
 }

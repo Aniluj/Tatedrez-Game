@@ -4,6 +4,7 @@ public class Cell : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _cellSpriteRenderer;
     [SerializeField] private SelectableMarker _selectableMarker;
+    [SerializeField] private Collider2D _cellCollider;
     private CellData _cellData;
     private ChessPiece _pieceLocker;
     
@@ -33,8 +34,9 @@ public class Cell : MonoBehaviour
         _pieceLocker = pieceLocker_v;
     }
 
-    public void SwitchSelectabilityDisplay(bool isAvailable)
+    public void SwitchSelectabilityState(bool isAvailable)
     {
         _selectableMarker.gameObject.SetActive(isAvailable);
+        _cellCollider.enabled = isAvailable;
     }
 }

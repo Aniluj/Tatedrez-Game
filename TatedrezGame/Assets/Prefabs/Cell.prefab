@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cellSpriteRenderer: {fileID: 8532845582576675899}
   _selectableMarker: {fileID: 4775272220260285385}
+  _cellCollider: {fileID: 3576467529829556989}
 --- !u!61 &3576467529829556989
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108,7 +109,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526473697737228574}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
