@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a363caf492c1b4c8b4db78aca88a14, type: 3}
+  m_Name: Level1BlackRookData
+  m_EditorClassIdentifier: 
+  _chessPieceSprite: {fileID: 1354141098, guid: cd276401d21857d4ca444d14344ec729, type: 3}
+  _chessPieceColor: 1

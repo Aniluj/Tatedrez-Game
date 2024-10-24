@@ -1,16 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Board : MonoBehaviour
 {
     [SerializeField] private Cell _cellPrefab;
-    [SerializeField] private BoardData _boardData;
+    private BoardData _boardData;
     private Cell[,] _cells;
+    private List<ChessPiece> _placedPieces = new List<ChessPiece>();
     private const int _cellSize = 1;
-
-    private void Start()
-    {
-        Initialize(_boardData);
-    }
 
     public void Initialize(BoardData boardData_v)
     {
@@ -21,32 +18,49 @@ public class Board : MonoBehaviour
 
     public void CreateCenteredCells()
     {
-        float offsetX = -(((_boardData.AmountOfColumns * _cellSize) - _cellSize) / 2f);
-        float offsetY = (((_boardData.AmountOfRows * _cellSize) - _cellSize) / 2f);
-        ChessColor lastCreatedCellColor = (ChessColor)Random.Range(0, 1);
+        float totalWidth = _boardData.AmountOfColumns * _cellSize;
+        float totalHeight = _boardData.AmountOfRows * _cellSize;
+
+        float startX = -((totalWidth - _cellSize) / 2f);
+        float startY = ((totalHeight - _cellSize) / 2f);
+
+        ChessColor lastCellColorUsed = (ChessColor)Random.Range(0, 2);
 
         for (int row = 0; row < _boardData.AmountOfRows; row++)
         {
             for (int column = 0; column < _boardData.AmountOfColumns; column++)
             {
-                Vector3 cellPosition = new Vector3(offsetX + (column * _cellSize), offsetY - (row * _cellSize));
+                Vector3 cellPosition = new Vector3(startX + (column * _cellSize), startY - (row * _cellSize));
 
                 var cell = Instantiate(_cellPrefab, cellPosition, Quaternion.identity, transform);
                 cell.name = $"Cell_{row}_{column}";
 
-                if (lastCreatedCellColor == ChessColor.White)
-                {
-                    cell.Initialize(_boardData.BlackCellData, row, column);
-                    _cells[row, column] = cell;
-                    lastCreatedCellColor = ChessColor.Black;
-                }
-                else
-                {
-                    cell.Initialize(_boardData.WhiteCellData, row, column);
-                    _cells[row, column] = cell;
-                    lastCreatedCellColor = ChessColor.White;
-                }
+                lastCellColorUsed = lastCellColorUsed == ChessColor.Black ? ChessColor.White : ChessColor.Black;
+
+                cell.Initialize(_boardData.GetCellData(lastCellColorUsed), row, column);
+                _cells[row, column] = cell;
             }
+        }
+    }
+
+    public void ShowSelectableCellsDisplay(ChessPiece selectedChessPiece_v)
+    {
+        var availableMoves = selectedChessPiece_v.GetAvailableMoves(_cells);
+
+        if (availableMoves != null && availableMoves.Count > 0)
+        {
+            for (int i = 0; i < availableMoves.Count; i++)
+            {
+                _cells[availableMoves[i].x, availableMoves[i].y].SwitchSelectabilityDisplay(true);
+            }
+        }
+    }
+
+    public void ChangeCellSelectableDisplayStates(bool isEnable)
+    {
+        foreach (Cell cell in _cells)
+        {
+            if (!cell.HasLocker) cell.SwitchSelectabilityDisplay(isEnable);
         }
     }
 }

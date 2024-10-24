@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cellColor: 0
   _cellSprite: {fileID: 1628707589, guid: cd276401d21857d4ca444d14344ec729, type: 3}
+  _selectableMarkerSprite: {fileID: -69346925, guid: cd276401d21857d4ca444d14344ec729, type: 3}
